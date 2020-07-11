@@ -26,3 +26,16 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+/**
+ * Adds a random quote to the page.
+ */
+function addRandomQuote() {
+
+  // Pick a random quote.
+  const quote = quotes[Math.floor(Math.random() * quotes.length)];
+
+  // Add it to the page.
+  const quoteContainer = document.getElementById('quote-container');
+  quoteContainer.innerHTML = "<p>"+quote.quote+"</p>" + "<p>~" + quote.author;
+}
