@@ -22,23 +22,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
+@WebServlet("/comments")
 public class DataServlet extends HttpServlet {
-  ArrayList<String> list = new ArrayList<String>();
-  public DataServlet(){
-      super();
-      list.add("Hey Umang, nice to meet you!");
-      list.add("Happy Birthday!");
-      list.add("Wanna talk about business. How do I contact you?");
-  }
+  ArrayList<comment> commentsList = new ArrayList<comment>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Gson gson = new Gson();
-    String json = gson.toJson(list);
+    String json = gson.toJson(commentsList);
     // Send the JSON as the response
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    String commentData = request.getParameter("data");
+    String commentAuthor = request.getParameter("author");
+    comment commentObj = new comment(commentData, commentAuthor);
+    commentsList.add(commentObj);
+    response.sendRedirect("/index.html");
+  }
+
+}
+
+class comment {
+    String commentData = "";
+    String commentAuthor = "";
+    public comment(String commentData, String commentAuthor){
+        this.commentData = commentData;
+        this.commentAuthor = commentAuthor;
+    }
 }

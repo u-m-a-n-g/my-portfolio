@@ -40,20 +40,15 @@ function addRandomQuote() {
   quoteContainer.innerHTML = "<p>"+quote.quote+"</p>" + "<p>~" + quote.author;
 }
 
-function getData() {
-  fetch('/data').then(response => response.json()).then((comments) => {
-    const dataListElement = document.getElementById('data-container');
+function getComments() {
+  fetch('/comments').then(response => response.json()).then((comments) => {
+    const dataListElement = document.getElementById('comments-container');
     dataListElement.innerHTML = '';
     comments.forEach((comment) => {
-      dataListElement.appendChild(
-        createListElement(comment));
+      const liElement = document.createElement('li');
+      liElement.innerHTML = comment.commentAuthor + ": " + comment.commentData;
+      dataListElement.appendChild(liElement);
     });
   });
 }
 
-/** Creates an <li> element containing text. */
-function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
-}

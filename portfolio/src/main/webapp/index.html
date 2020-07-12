@@ -7,7 +7,7 @@
     <script type="text/javascript" src="quotes.js"></script>
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getComments()">
     <div id="content">
       <h1>My Portfolio</h1>
       <p>Hi! I am Umang Malik. This is my portfolio.</p>
@@ -29,8 +29,19 @@
       <button onclick="addRandomQuote()">Random quote</button>
       <div id="quote-container"></div>
 
-      <button onclick="getData()">Get Data!</button>
-      <div id="data-container"></div>
+      <h2> Comments </h2>
+      <div id="comments-container"></div>
+      <h3> Add new comment </h3>  
+      <form action="/comments" method="POST">
+      Your name:
+      <input name="author"></textarea>
+      <br/>
+      <p>Add comment:</p>
+      <textarea name="data"></textarea>
+      <br/><br/>
+      <input type="submit" value="post" />
+    </form>
+
 
     </div>
   </body>
