@@ -39,3 +39,9 @@ function addRandomQuote() {
   const quoteContainer = document.getElementById('quote-container');
   quoteContainer.innerHTML = "<p>"+quote.quote+"</p>" + "<p>~" + quote.author;
 }
+
+function getData() {
+  fetch('/data').then(response => response.text()).then((quote) => {
+    document.getElementById('data-container').innerHTML = quote;
+  });
+}
