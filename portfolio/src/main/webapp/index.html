@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="quotes.js"></script>
     <script src="script.js"></script>
   </head>
   <body onload="getComments()">
@@ -18,31 +17,26 @@
 
       <h1>Umang Malik</h1>
       <p>This is Umang.</p>
-      <img src="images/umang-1.jpg"/>
+      <img src="images/umang-1.jpg" alt="umang-pic-1">
 
       <p>He likes to learn new things.</p>
-      <img src="images/umang-2.jpg"/>
+      <img src="images/umang-2.jpg" alt="umang-pic-2">
 
       <p>He mostly spends his time coding, playing video games or browsing reddit.</p>
-      <img src="images/umang-3.jpg"/>
-      <br>
-      <button onclick="addRandomQuote()">Random quote</button>
-      <div id="quote-container"></div>
+      <img src="images/umang-3.jpg" alt="umang-pic-3">
 
       <h2> Comments </h2>
       <div id="comments-container"></div>
       <h3> Add new comment </h3>  
       <form action="/comments" method="POST">
       Your name:
-      <input name="author"></textarea>
-      <br/>
+      <input name="author">
+      <br>
       <p>Add comment:</p>
       <textarea name="data"></textarea>
-      <br/><br/>
-      <input type="submit" value="post" />
+      <br>
+      <input type="submit" value="post">
     </form>
-
-
     </div>
   </body>
 </html>
