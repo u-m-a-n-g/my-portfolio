@@ -28,25 +28,24 @@ function addRandomGreeting() {
 }
 
 /**
- * Adds a random quote to the page.
+ * Fills the comments-container by fetching comments from /comments.
  */
-function addRandomQuote() {
-
-  // Pick a random quote.
-  const quote = quotes[Math.floor(Math.random() * quotes.length)];
-
-  // Add it to the page.
-  const quoteContainer = document.getElementById('quote-container');
-  quoteContainer.innerHTML = "<p>"+quote.quote+"</p>" + "<p>~" + quote.author;
-}
-
 function getComments() {
   fetch('/comments').then(response => response.json()).then((comments) => {
     const dataListElement = document.getElementById('comments-container');
     dataListElement.innerHTML = '';
     comments.forEach((comment) => {
       const liElement = document.createElement('li');
-      liElement.innerHTML = comment.commentAuthor + ": " + comment.commentData;
+      var dateObj = new Date(comment.timestamp);
+      var timestampStr = dateObj.toDateString() + " " + dateObj.toLocaleTimeString();
+      liElement.innerHTML = "On " + timestampStr + ", <b>" + comment.commentAuthor
+        + "</b> said: <br>";
+
+      var commentBoxElement = document.createElement('div');
+      commentBoxElement.className = "comment-data";
+      commentBoxElement.innerHTML = comment.commentData;
+      liElement.appendChild(commentBoxElement);
+
       dataListElement.appendChild(liElement);
     });
   });
