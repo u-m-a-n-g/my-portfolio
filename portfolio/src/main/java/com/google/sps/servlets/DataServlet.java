@@ -38,6 +38,7 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
+    // Fetch comments and fill them in an array of objects (of class Comment)
     ArrayList<Comment> commentsList = new ArrayList<Comment>();
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
@@ -45,10 +46,12 @@ public class DataServlet extends HttpServlet {
       String commentAuthor = (String) entity.getProperty("commentAuthor");
       long timestamp = (long) entity.getProperty("timestamp");
 
+      // Create new comment object
       Comment comment = new Comment(commentData, commentAuthor, timestamp);
       commentsList.add(comment);
     }
 
+    // Return comments as a json.
     Gson gson = new Gson();
     String json = gson.toJson(commentsList);
     response.setContentType("application/json;");
