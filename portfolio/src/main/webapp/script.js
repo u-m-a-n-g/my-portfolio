@@ -51,3 +51,18 @@ function getComments() {
   });
 }
 
+function addCommentsForm() {
+  fetch('/auth').then(response => response.json()).then((authInfo) => {
+    const formElement = document.getElementById('comments-form');
+    const buttonElement = document.getElementById('auth-button');
+    if(authInfo.loggedIn){
+        formElement.style.display = 'block';
+        buttonElement.innerHTML += '<p>Hello ' + authInfo.email + '!</p>';
+        buttonElement.innerHTML += '<p>Logout <a href=\"' + authInfo.logoutUrl + '\">here</a>.</p>';
+    }
+    else {
+        buttonElement.innerHTML += '<p>Login <a href=\"' + authInfo.loginUrl + '\">here</a>.</p>';
+        formElement.style.display = 'none';
+    }
+  });
+}
