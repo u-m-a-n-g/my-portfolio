@@ -7,3 +7,18 @@
 #greeting-container {
   margin-top: 20px;
 }
+
+img{
+    width:100%;
+    max-width:300px;
+}
+
+li{
+  margin: 20px 0;
+}
+
+.comment-data {
+  background-color: #cfc;
+  padding: 10px;
+  border: 1px green;
+}

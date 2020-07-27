@@ -26,3 +26,43 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+/**
+ * Fills the comments-container by fetching comments from /comments.
+ */
+function getComments() {
+  fetch('/comments').then(response => response.json()).then((comments) => {
+    const dataListElement = document.getElementById('comments-container');
+    dataListElement.innerHTML = '';
+    comments.forEach((comment) => {
+      const liElement = document.createElement('li');
+      var dateObj = new Date(comment.timestamp);
+      var timestampStr = dateObj.toDateString() + " " + dateObj.toLocaleTimeString();
+      liElement.innerHTML = "On " + timestampStr + ", <b>" + comment.commentAuthor
+        + "</b> said: <br>";
+
+      var commentBoxElement = document.createElement('div');
+      commentBoxElement.className = "comment-data";
+      commentBoxElement.innerHTML = comment.commentData;
+      liElement.appendChild(commentBoxElement);
+
+      dataListElement.appendChild(liElement);
+    });
+  });
+}
+
+function addCommentsForm() {
+  fetch('/auth').then(response => response.json()).then((authInfo) => {
+    const formElement = document.getElementById('comments-form');
+    const buttonElement = document.getElementById('auth-button');
+    if(authInfo.loggedIn){
+        formElement.style.display = 'block';
+        buttonElement.innerHTML += '<p>Hello ' + authInfo.email + '!</p>';
+        buttonElement.innerHTML += '<p>Logout <a href=\"' + authInfo.logoutUrl + '\">here</a>.</p>';
+    }
+    else {
+        buttonElement.innerHTML += '<p>Login <a href=\"' + authInfo.loginUrl + '\">here</a>.</p>';
+        formElement.style.display = 'none';
+    }
+  });
+}

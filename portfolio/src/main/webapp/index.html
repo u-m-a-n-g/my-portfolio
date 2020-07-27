@@ -1,18 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getComments(); addCommentsForm();">
     <div id="content">
       <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
+      <p>Hi! I am Umang Malik. This is my portfolio.</p>
+      <p>Click here to get a random greeting:</p>
       <button onclick="addRandomGreeting()">Hello</button>
       <div id="greeting-container"></div>
+      <br>
+
+      <h1>Umang Malik</h1>
+      <p>I am Umang.</p>
+      <img src="images/umang-1.jpg" alt="umang-pic-1">
+
+      <p>I like to learn new things.</p>
+      <img src="images/umang-2.jpg" alt="umang-pic-2">
+
+      <p>I mostly spend my time coding, playing video games or browsing reddit.</p>
+      <img src="images/umang-3.jpg" alt="umang-pic-3">
+
+      <h2> Comments </h2>
+      <div id="comments-container"></div>
+      <h3> Add new comment </h3>
+      <form id="comments-form" action="/comments" method="POST" style="display:none;">
+      Your name:
+      <input name="author">
+      <br>
+      <p>Add comment:</p>
+      <textarea name="data"></textarea>
+      <br>
+      <input type="submit" value="post">
+    </form>
+    <div id='auth-button'>
     </div>
   </body>
 </html>
